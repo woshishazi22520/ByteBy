@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #4a6fa5;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #e1e8ed;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+#taskInput:focus {
+    border-color: #4a6fa5;
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+}
+
+#prioritySelect {
+    padding: 15px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+#prioritySelect:focus {
+    border-color: #4a6fa5;
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+}
+
+#addTaskBtn {
+    padding: 15px 25px;
+    background: #4a6fa5;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+#addTaskBtn:hover {
+    background: #3a5a8a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
+}
+
+#addTaskBtn:active {
+    transform: translateY(0);
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    background: #f8f9fa;
+    padding: 12px 20px;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#clearCompletedBtn {
+    padding: 8px 15px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#clearCompletedBtn:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(108, 117, 125, 0.3);
+}
+
+#clearCompletedBtn:active {
+    transform: translateY(0);
+}
+
+#clearAllBtn {
+    padding: 8px 15px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#clearAllBtn:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+}
+
+#clearAllBtn:active {
+    transform: translateY(0);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 18px;
+    font-weight: 600;
+    background: #f8f9fa;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+#taskList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+/* 优先级样式 */
+.task-item.high {
+    border-left: 4px solid #dc3545;
+}
+
+.task-item.medium {
+    border-left: 4px solid #ffc107;
+}
+
+.task-item.low {
+    border-left: 4px solid #28a745;
+}
+
+.task-item:hover {
+    border-color: #e1e8ed;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #4a6fa5;
+}
+
+.task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.task-text {
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: 5px 0;
+}
+
+.task-text.edit-mode {
+    border: 2px solid #4a6fa5;
+    border-radius: 8px;
+    padding: 5px 10px;
+    background: white;
+}
+
+.task-text.completed {
+    text-decoration: line-through;
+    color: #999;
+    opacity: 0.7;
+}
+
+.task-meta {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.priority-badge {
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.priority-badge.high {
+    background: #ffebee;
+    color: #dc3545;
+}
+
+.priority-badge.medium {
+    background: #fff3cd;
+    color: #ffc107;
+}
+
+.priority-badge.low {
+    background: #d4edda;
+    color: #28a745;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.delete-btn, .edit-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 50px;
+}
+
+.delete-btn {
+    background: #ff6b6b;
+    color: white;
+}
+
+.edit-btn {
+    background: #4a6fa5;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #ff5252;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+}
+
+.delete-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .input-section {
+        flex-direction: column;
+    }
+    
+    #taskInput {
+        min-width: auto;
+    }
+    
+    #addTaskBtn {
+        min-width: auto;
+    }
+    
+    .task-item {
+        padding: 12px 15px;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
